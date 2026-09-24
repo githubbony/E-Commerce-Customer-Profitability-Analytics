@@ -67,3 +67,14 @@ black src tests
 - Discount is a **ratio** (0.0–1.0), not a percentage.
 - `profit_margin = profit / sales` (can be negative).
 - Dates parsed as `pd.Timestamp`; timezone-naive.
+
+
+## IBM Bob Usage
+
+IBM Bob was used during the development of this project for project initialization,
+project structure generation, and development assistance.
+
+The project was initialized using IBM Bob, which generated the `AGENTS.md`
+project context file and the `.bob/` directory in the project root.
+
+IBM Bob was also used to assist with the project scaffolding and analysis workflow.
