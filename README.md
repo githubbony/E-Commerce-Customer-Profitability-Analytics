@@ -1,80 +1,190 @@
 # E-Commerce Customer & Profitability Analytics
 
-A Python data analytics project examining e-commerce sales trends, category and product performance, the relationship between discounting and profit, regional performance, and customer segment behaviour.
+## Project Overview
+
+This project analyzes e-commerce sales, profitability, customer purchasing behavior, products, regions, customer segments, and discount patterns using the Sample Superstore dataset.
+
+The main business question is:
+
+> **What factors influence sales, profitability, and customer purchasing behavior in an e-commerce business?**
+
+The analysis was performed using Python, Pandas, Matplotlib, Jupyter Notebooks, and statistical/business analysis techniques.
+
+## Objectives
+
+* Analyze overall sales and profitability.
+* Identify high-performing and low-performing product categories and sub-categories.
+* Compare sales and profit across geographic regions.
+* Analyze customer segment purchasing behavior.
+* Examine the relationship between discounts and profitability.
+* Identify the top and lowest-profit products.
+* Generate business insights that can support better pricing, discount, product, and regional decisions.
+
+## Dataset
+
+The project uses the **Sample Superstore** dataset.
+
+Dataset file:
+
+`data/sample_-_superstore.xls`
+
+The dataset is included in the project repository.
+
+It contains information including:
+
+* Order and shipping details
+* Customer information
+* Customer segments
+* Geographic information
+* Product categories and sub-categories
+* Sales
+* Quantity
+* Discount
+* Profit
+
+## Technologies Used
+
+* Python
+* Pandas
+* NumPy
+* Matplotlib
+* Jupyter Notebook
+* Git & GitHub
+* IBM Bob
 
 ## Project Structure
 
-```
+```text
+E-Commerce-Customer-Profitability-Analytics/
+│
 ├── data/
-│   ├── raw/          # Source data files (not committed)
-│   ├── processed/    # Cleaned, feature-engineered datasets
-│   └── external/     # Reference/lookup tables
+│   ├── processed/
+│   ├── external/
+│   ├── raw/
+│   └── sample_-_superstore.xls
+│
 ├── notebooks/
-│   ├── 01_data_cleaning.ipynb           # Load, clean, derive base metrics
-│   ├── 02_sales_and_profit.ipynb        # Sales trends + discount vs. profit
-│   ├── 03_category_and_product.ipynb    # Category/sub-category + top/bottom products
-│   └── 04_regional_and_segments.ipynb  # Regional performance + customer segments
-├── src/
-│   ├── __init__.py
-│   ├── data/         # Ingestion & cleaning helpers
-│   ├── analysis/     # Core analytics logic
-│   ├── visualisation/# Chart builders
-│   └── utils/        # Shared utilities
-├── tests/            # pytest test suite
+│   ├── 01_data_cleaning.ipynb
+│   ├── 02_sales_and_profit.ipynb
+│   ├── 03_category_and_product.ipynb
+│   └── 04_regional_and_segments.ipynb
+│
 ├── outputs/
-│   ├── figures/      # Saved charts
-│   └── reports/      # HTML / PDF reports
+│   ├── category_profit.png
+│   ├── category_sales.png
+│   ├── discount_vs_profit.png
+│   ├── monthly_sales_profit.png
+│   ├── regional_sales.png
+│   ├── segment_profit.png
+│   ├── segment_sales.png
+│   └── top_10_products.png
+│
+├── src/
+│   ├── analysis.py
+│   ├── analysis/
+│   ├── data/
+│   ├── utils/
+│   └── visualisation/
+│
+├── tests/
 ├── requirements.txt
 ├── pyproject.toml
+├── AGENTS.md
 └── README.md
 ```
 
-## Quick Start
+## Setup and Installation
+
+Clone the repository:
 
 ```bash
-# 1. Create and activate a virtual environment
-python -m venv .venv
-source .venv/bin/activate      # macOS/Linux
-.venv\Scripts\activate         # Windows
-
-# 2. Install dependencies
-pip install -r requirements.txt
-
-# 3. Launch JupyterLab
-jupyter lab
-
-# 4. Run tests
-pytest
-
-# 5. Lint & format
-ruff check src tests
-black src tests
+git clone https://github.com/githubbonny/E-Commerce-Customer-Profitability-Analytics.git
 ```
 
-## Analysis Scope
+Move into the project directory:
 
-| Domain | Key Questions |
-|---|---|
-| **Sales Trends** | Monthly/yearly revenue trajectory; seasonality patterns |
-| **Category & Product Performance** | Which categories and sub-categories drive sales vs. profit; top and bottom 10 products |
-| **Discount vs. Profit** | Does discounting grow revenue or erode margin? At what threshold do orders become loss-making? |
-| **Regional Performance** | Sales and profit by region and state; which geographies over/under-perform |
-| **Customer Segments** | Revenue, profit, and margin profile of Consumer, Corporate, and Home Office segments |
+```bash
+cd E-Commerce-Customer-Profitability-Analytics
+```
 
-## Data Conventions
+Install the required Python libraries:
 
-- All monetary columns in **USD**.
-- Discount is a **ratio** (0.0–1.0), not a percentage.
-- `profit_margin = profit / sales` (can be negative).
-- Dates parsed as `pd.Timestamp`; timezone-naive.
+```bash
+pip install -r requirements.txt
+```
 
+## Running the Analysis
+
+Run the main analysis script:
+
+```bash
+python src/analysis.py
+```
+
+The analysis generates cleaned datasets and visualization files in the `data/processed/` and `outputs/` directories.
+
+The Jupyter Notebooks in the `notebooks/` directory can also be used to review the analysis step by step.
+
+## Key Results
+
+The analysis produced the following overall business metrics:
+
+* **Total Sales:** $2,326,534.35
+* **Total Profit:** $292,296.81
+* **Total Quantity Sold:** 38,654
+* **Total Orders:** 5,111
+* **Total Customers:** 804
+* **Average Order Value:** $455.20
+* **Overall Profit Margin:** 12.56%
+
+### Category Performance
+
+Technology generated the highest profit among the three major categories, while Furniture generated substantially lower profit relative to its sales volume.
+
+### Regional Performance
+
+The West region generated the highest sales and profit in the analyzed dataset.
+
+### Customer Segments
+
+The Consumer segment generated the highest sales and profit, followed by Corporate and Home Office.
+
+### Discount and Profitability
+
+The analysis shows a strong profitability concern at higher discount levels. Several high-discount groups recorded negative profit, indicating that aggressive discounting can reduce or eliminate profitability.
+
+### Product Performance
+
+The analysis identified products with both exceptionally high sales/profit and products generating significant losses. This provides opportunities for product-level pricing, promotion, and portfolio review.
 
 ## IBM Bob Usage
 
-IBM Bob was used during the development of this project for project initialization,
-project structure generation, and development assistance.
+IBM Bob was used during the development of this project for project initialization, project structure generation, code scaffolding, and development assistance.
 
-The project was initialized using IBM Bob, which generated the `AGENTS.md`
-project context file and the `.bob/` directory in the project root.
+The project was initialized using IBM Bob, which generated the `AGENTS.md` project context file and the `.bob/` directory in the project root.
 
 IBM Bob was also used to assist with the project scaffolding and analysis workflow.
+
+IBM Bob documentation confirms that its `/init` process generates project-level `AGENTS.md` context and a `.bob` directory containing mode-specific context files.
+
+## Project Outputs
+
+The project produces:
+
+* Cleaned datasets
+* Monthly sales and profit analysis
+* Category-level sales and profit analysis
+* Regional analysis
+* Customer segment analysis
+* Discount versus profit analysis
+* Top-product analysis
+* Profitability analysis
+* Data visualizations
+
+## Author
+
+**Ankitadhar**
+
+## GitHub Repository
+
+https://github.com/githubbonny/E-Commerce-Customer-Profitability-Analytics
